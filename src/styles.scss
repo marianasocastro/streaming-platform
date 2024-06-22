@@ -1,1 +1,205 @@
-/* You can add global styles to this file, and also import other style files */
+$color-green: #00925D;
+$color-red: #EB3F5E;
+$color-yellow: #FBBC05;
+$color-white: #FFFFFF;
+$color-grey: #9CA4AB;
+$color-700-black: #28262D;
+$color-800-black: #0D0C0F;
+$color-900-black: #08080A;
+$breakpoint-xs: 320px; // Pequenos dispositivos móveis
+$breakpoint-sm: 500px; // Dispositivos móveis médios
+$breakpoint-md: 830px; // Tablets ou telefones maiores em modo paisagem
+$breakpoint-lg: 1024px; // Tablets em modo paisagem e pequenos desktops
+$breakpoint-xl: 1200px; // Desktops grandes
+$border-radius: 10px;
+$container-max-width: 1296px;
+$container-padding: 15px;
+
+/*TEXT STYLES*/
+@mixin responsive-text($size, $weight, $height) {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $height;
+
+  @media (max-width: 768px) {
+    font-size: $size * 0.8; // Ajuste para telas menores
+  }
+}
+
+.hero-text{
+  @include responsive-text(65px, 500, 86px);
+}
+
+.text-h1{
+  @include responsive-text(40px, 500, 48px);
+}
+
+.text-h2{
+  @include responsive-text(32px, 300, 40px);
+}
+
+.text-h3{
+  @include responsive-text(28px, 400, 32px);
+}
+
+.paragraph{
+  @include responsive-text(16px, 300, 24px);
+  letter-spacing: .4px;
+}
+
+.paragraph-bold{
+  @include responsive-text(16px, 500, 24px);
+  letter-spacing: .4px;
+}
+
+.text-details{
+  @include responsive-text(14px, 300, 24px);
+  letter-spacing: .4px;
+}
+
+.text-tags{
+  @include responsive-text(14px, 300, 24px);
+  letter-spacing: .4px;
+  background-color: $color-800-black;
+  border-radius: $border-radius;
+  padding: .5rem;
+}
+
+// Mixin para botões
+@mixin btn-styles($bg-color, $border-color, $text-color) {
+  background-color: $bg-color;
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+  color: $text-color;
+  padding: 5px 15px;
+  height: 40px;
+  @include responsive-text(16px, 500, 24px);
+  &:hover {
+    background-color: darken($bg-color, 10%);
+    border-color: darken($bg-color, 10%);
+    cursor: pointer;
+  }
+}
+
+.btn-primary{
+  @include btn-styles($color-green, $color-green, $color-white);
+}
+
+.btn-secondary{
+  @include btn-styles(transparent, $color-white, $color-white);
+}
+
+
+
+
+/*START CSS RESET*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    // font: inherit;
+    vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+*,
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+body{
+    font-size: 100%;
+    list-style-type: none;
+}
+/*END CSS RESET*/
+
+body{
+  background-color: $color-800-black;
+}
+
+/* Mobile-First Styles */
+.component {
+  width: 100%;
+  padding: 10px;
+}
+
+/* Tablet Styles */
+@media (min-width: $breakpoint-sm) {
+  .component {
+    width: 50%;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: $breakpoint-md) {
+  .component {
+    width: 33.33%;
+  }
+}
+
+/* Large Desktop Styles */
+@media (min-width: $breakpoint-lg) {
+  .component {
+    width: 25%;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto; // Centraliza o contêiner
+  padding: 0 $container-padding;
+
+  // Estilos responsivos para padding
+  @media (min-width: $breakpoint-sm) {
+    padding: 0 20px;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    padding: 0 30px;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    padding: 0 40px;
+  }
+
+}
+
+

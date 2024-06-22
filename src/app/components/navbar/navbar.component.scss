@@ -1,0 +1,116 @@
+@import '../../../styles.scss';
+
+.navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px auto;
+}
+
+.navbar-brand{
+  img{
+    width: 150px;
+    height: auto;
+  }
+}
+
+.navbar-collapse{
+  .navbar-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 20px;
+    .nav-item{
+      .nav-link{
+        color: $color-grey;
+        &:hover{
+          color: $color-white;
+        }
+      }
+      .active-link{
+        color: $color-white;
+      }
+    }
+  }
+}
+
+.btns{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+  .icon{
+    background-color: transparent;
+    color: $color-white;
+    font-size: 24px;
+    border: none;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+
+.navbar-toggler {
+  display: none; /* Esconde o botão do toggle em telas maiores */
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    margin-bottom: 5px;
+    background-color: $color-white;
+  }
+}
+
+.show-navbar-btn{
+  display: none;
+}
+
+
+@media (max-width: $breakpoint-md) {
+  .navbar-toggler {
+    display: block; // Shows the toggler button on smaller screens
+  }
+  .navbar-collapse {
+    display: none; // Hides the links by default on smaller screens
+    position: absolute;
+    top: 60px; // Positions the menu below the navbar
+    right: 0; // Aligns the menu to the right
+    background-color: $color-900-black;
+    z-index: 0; // Ensures the navbar-collapse is below the toggler button
+    .navbar-nav{
+      flex-direction: column; // Stacks the items vertically
+      align-items: flex-start;
+      padding: 10px 20px;
+      row-gap: 14px;
+      .nav-item{
+        width: 100px;
+      }
+    }
+    &.show {
+      display: block; // Shows the menu when toggled
+    }
+  }
+  .btns {
+    .btn-secondary, .btn-primary {
+      margin-left: 5px; // Adjusts margin for smaller screens
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .hide-btn{
+    display: none;
+  }
+
+  .show-navbar-btn{
+    display: block;
+    width: 100%;
+  }
+}
+
