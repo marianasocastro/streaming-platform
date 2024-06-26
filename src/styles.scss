@@ -33,14 +33,17 @@ $container-padding: 15px;
 
 .text-h1{
   @include responsive-text(40px, 500, 48px);
+  color: $color-white;
 }
 
 .text-h2{
   @include responsive-text(32px, 300, 40px);
+  color: $color-white;
 }
 
 .text-h3{
   @include responsive-text(28px, 400, 32px);
+  color: $color-white;
 }
 
 .paragraph{
@@ -56,14 +59,37 @@ $container-padding: 15px;
 .text-details{
   @include responsive-text(14px, 300, 24px);
   letter-spacing: .4px;
+  color: $color-grey
 }
 
 .text-tags{
   @include responsive-text(14px, 300, 24px);
   letter-spacing: .4px;
-  background-color: $color-800-black;
+  background-color: $color-700-black;
   border-radius: $border-radius;
   padding: .5rem;
+}
+
+.link-default{
+  @include responsive-text(16px, 300, 24px);
+  letter-spacing: .4px;
+  color: $color-grey;
+  &:hover{
+    color: $color-white;
+  }
+}
+
+.link-small{
+  @include responsive-text(14px, 300, 24px);
+  letter-spacing: .4px;
+  color: $color-grey;
+  &:hover{
+    color: $color-white;
+  }
+}
+
+.active-link-default{
+  color: $color-white !important;
 }
 
 // Mixin para botões
@@ -79,6 +105,9 @@ $container-padding: 15px;
     background-color: darken($bg-color, 10%);
     border-color: darken($bg-color, 10%);
     cursor: pointer;
+  }
+  a{
+    color: $text-color;
   }
 }
 

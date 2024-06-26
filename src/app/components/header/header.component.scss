@@ -1,0 +1,114 @@
+@import '../../../styles.scss';
+
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+  app-navbar{
+    z-index: 2;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background: radial-gradient(circle, rgba(13, 12, 15, .3) 0%, rgba(13, 12, 15, .5) 50%, rgba(13, 12, 15, 1) 100%),
+  linear-gradient(to top, rgba(13, 12, 15, 1), transparent 30%); /* Gradiente linear do preto ao transparente */;
+  z-index: 1; /* Ensure overlay is on top of the background image */
+}
+
+.carousel-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  row-gap: 12px;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 2;
+  margin-bottom: 30px;
+  width: 40%;
+  .btns{
+    display: flex;
+    flex-direction: row;
+    column-gap: 12px;
+    width: 100%;
+    button{
+      a{
+        .fa-circle-play,
+        .fa-bookmark{
+          margin-right: 7px;
+        }
+      }
+    }
+  }
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  z-index: 2;
+  .indicator {
+    width: 10px;
+    height: 10px;
+    background: $color-grey;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .indicator.active {
+    background-color: $color-white;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+
+  .carousel-caption{
+    width: 60%;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+
+  .carousel-caption{
+    width: 100%;
+    margin-bottom: 50px;
+    .btns{
+      button{
+        width: 100%;
+      }
+    }
+  }
+
+  .carousel-indicators{
+    margin-bottom: 0px;
+    right: 0px;
+    left: 50%;
+    justify-content: center;
+  }
+}
+
+
+
+
