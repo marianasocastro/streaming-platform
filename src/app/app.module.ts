@@ -6,13 +6,25 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { StudioCarouselComponent } from './components/studio-carousel/studio-carousel.component';
+import { VerticalCardComponent } from './components/vertical-card/vertical-card.component';
+import { HorizontalCardComponent } from './components/horizontal-card/horizontal-card.component';
+import { MiniCardComponent } from './components/mini-card/mini-card.component';
+import { SliderComponent } from './components/slider/slider.component';
+import { BannerComponent } from './components/banner/banner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    StudioCarouselComponent,
+    VerticalCardComponent,
+    HorizontalCardComponent,
+    MiniCardComponent,
+    SliderComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,

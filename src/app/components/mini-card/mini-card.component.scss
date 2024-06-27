@@ -1,0 +1,32 @@
+@import '../../../styles.scss';
+
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  column-gap: 15px;
+  // width: fit-content;
+  width: max-content;
+  .card-image img {
+    width: 86px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
+
+.card-text {
+  color: $color-white;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: fit-content;
+  .text-tags{
+    width: fit-content;
+  }
+  .fa-star{
+    color: $color-yellow;
+  }
+}

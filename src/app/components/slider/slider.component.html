@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="slider-wrapper">
+    <button id="prev-slide" class="btn-tertiary slide-button" *ngIf="showPrevButton" (click)="scroll('prev')">
+      <i class="fa-solid fa-angle-left"></i>
+    </button>
+    <ul class="image-list"  #imageList (scroll)="updateButtonsVisibility();">
+      <ng-content></ng-content>
+    </ul>
+    <button id="next-slide" class="btn-tertiary slide-button" *ngIf="showNextButton" (click)="scroll('next')">
+      <i class="fa-solid fa-angle-right"></i>
+    </button>
+  </div>
+</div>

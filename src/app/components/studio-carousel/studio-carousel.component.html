@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="slider-wrapper">
+    <button id="prev-slide" class="btn-tertiary slide-button" *ngIf="showPrevButton" (click)="scroll('prev')">
+      <i class="fa-solid fa-angle-left"></i>
+    </button>
+    <ul class="image-list"  #imageList (scroll)="updateButtonsVisibility(); updateScrollThumbPosition()">
+      <img *ngFor="let logo of logos" class="image-item" [src]="logo.image" alt="img-1" />
+    </ul>
+    <button id="next-slide" class="btn-tertiary slide-button" *ngIf="showNextButton" (click)="scroll('next')">
+      <i class="fa-solid fa-angle-right"></i>
+    </button>
+  </div>
+</div>
+
+
+

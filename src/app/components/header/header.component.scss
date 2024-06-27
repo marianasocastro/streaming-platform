@@ -1,6 +1,5 @@
 @import '../../../styles.scss';
 
-
 .carousel {
   position: relative;
   width: 100%;
@@ -34,6 +33,13 @@
   z-index: 1; /* Ensure overlay is on top of the background image */
 }
 
+.carousel-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
 .carousel-caption {
   display: flex;
   flex-direction: column;
@@ -44,7 +50,10 @@
   border-radius: 5px;
   z-index: 2;
   margin-bottom: 30px;
-  width: 40%;
+  width: 100%;
+  .text-h2, .text-details, .paragraph{
+    width: 40%;
+  }
   .btns{
     display: flex;
     flex-direction: row;
@@ -62,10 +71,6 @@
 }
 
 .carousel-indicators {
-  position: absolute;
-  bottom: 20px;
-  right: 40px;
-  transform: translateX(-50%);
   display: flex;
   gap: 10px;
   margin-bottom: 30px;
@@ -85,27 +90,28 @@
 @media (max-width: $breakpoint-md) {
 
   .carousel-caption{
-    width: 60%;
+    .text-h2, .text-details, .paragraph{
+      width: 60%;
+    }
   }
 }
 
 @media (max-width: $breakpoint-sm) {
 
-  .carousel-caption{
-    width: 100%;
+  .carousel-content{
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 50px;
+  }
+  .carousel-caption{
+    .text-h2, .text-details, .paragraph{
+      width: 100%;
+    }
     .btns{
       button{
         width: 100%;
       }
     }
-  }
-
-  .carousel-indicators{
-    margin-bottom: 0px;
-    right: 0px;
-    left: 50%;
-    justify-content: center;
   }
 }
 

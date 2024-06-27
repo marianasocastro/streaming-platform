@@ -67,7 +67,7 @@ $container-padding: 15px;
   letter-spacing: .4px;
   background-color: $color-700-black;
   border-radius: $border-radius;
-  padding: .5rem;
+  padding: .25rem .75rem;
 }
 
 .link-default{
@@ -117,6 +117,21 @@ $container-padding: 15px;
 
 .btn-secondary{
   @include btn-styles(transparent, $color-white, $color-white);
+}
+
+.btn-tertiary{
+  background-color: $color-grey;
+  border-radius: 50%;
+  padding: 5px;
+  width: 25px;
+  height: 25px;
+  color: $color-white;
+  border: none;
+  font-size: 1rem;
+  &:hover{
+    background-color: darken($color-grey, 10%);
+    cursor: pointer;
+  }
 }
 
 

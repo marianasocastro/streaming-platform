@@ -1,0 +1,31 @@
+@import '../../../styles.scss';
+
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  .card-image img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
+
+.card-text {
+  padding: 15px 0;
+  color: $color-white;
+  .card-details{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 5px;
+    margin-top: 5px;
+    i{
+      color: $color-yellow;
+      font-size: 16px;
+    }
+  }
+}
