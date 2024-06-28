@@ -1,20 +1,20 @@
 <div class="carousel">
   <div class="overlay"></div>
-  <div class="carousel-inner " [ngStyle]="{'background-image': 'url(' + slides[currentIndex].image + ')'}">
+  <div class="carousel-inner" [ngStyle]="{'background-image': 'url(' + 'https://image.tmdb.org/t/p/w1280' + movies[currentIndex].backdrop_path + ')'}">
     <app-navbar></app-navbar>
     <div class="carousel-content container">
       <div class="carousel-caption">
-        <span class="text-tags">{{slides[currentIndex].title}}</span>
-        <h2 class="text-h2">{{slides[currentIndex].title}}</h2>
-        <span class="text-details">{{slides[currentIndex].title}} • {{slides[currentIndex].title}} • {{slides[currentIndex].title}}</span>
-        <p class="paragraph">{{slides[currentIndex].description}}</p>
+        <span class="text-tags">{{movies[currentIndex].media_type}}</span>
+        <h2 class="text-h2">{{movies[currentIndex].title}}</h2>
+        <span class="text-details">{{movies[currentIndex].release_date | date:'yyyy'}} • {{movies[currentIndex].genres[0]}} • {{movies[currentIndex].genres[1]}} </span>
+        <p class="paragraph">{{movies[currentIndex].overview}}</p>
         <div class="btns">
           <button class="btn-primary"><a href=""><i class="fa-solid fa-circle-play"></i> Watch Trailer</a></button>
           <button class="btn-secondary"><a href=""><i class="fa-regular fa-bookmark"></i> Add Watchlist</a></button>
         </div>
       </div>
       <div class="carousel-indicators">
-        <span *ngFor="let slide of slides; let i = index"
+        <span *ngFor="let movie of movies; let i = index"
               (click)="goToSlide(i)"
               [ngClass]="{'active': i === currentIndex}"
               class="indicator">

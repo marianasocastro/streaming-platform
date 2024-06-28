@@ -1,0 +1,88 @@
+<app-header [movies]="trendingMovies"></app-header>
+<app-slider>
+  <div *ngFor="let company of companies">
+    <app-studio-carousel [logo]="company"></app-studio-carousel>
+  </div>
+</app-slider>
+<div *ngFor="let company of companies">
+  <img [src]="'https://image.tmdb.org/t/p/w200' + company.logo_path" alt="Logo da Empresa">
+</div>
+
+<app-studio-carousel></app-studio-carousel>
+
+<h3 class="text-h3 container">Just Release</h3>
+<app-slider>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+  <app-vertical-card></app-vertical-card>
+</app-slider>
+
+<h3 class="text-h3 container">Popular of the Week</h3>
+<app-slider>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+  <app-mini-card></app-mini-card>
+</app-slider>
+
+<app-header></app-header>
+
+<h3 class="text-h3 container">Movies</h3>
+<app-slider>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+  <app-horizontal-card></app-horizontal-card>
+</app-slider>
+<app-footer></app-footer>
+
+

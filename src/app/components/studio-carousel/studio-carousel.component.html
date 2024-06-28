@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="slider-wrapper">
     <button id="prev-slide" class="btn-tertiary slide-button" *ngIf="showPrevButton" (click)="scroll('prev')">
       <i class="fa-solid fa-angle-left"></i>
@@ -10,6 +10,11 @@
       <i class="fa-solid fa-angle-right"></i>
     </button>
   </div>
+</div> -->
+
+
+<div class="image-list"  #imageList>
+  <img  class="image-item" [src]="'https://image.tmdb.org/t/p/w200' + logo.logo_path" [alt]="logo.name" />
 </div>
 
 

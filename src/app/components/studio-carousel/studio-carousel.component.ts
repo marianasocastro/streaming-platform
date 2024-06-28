@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, ViewChildren, QueryList, HostListener } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, ViewChildren, QueryList, HostListener, Input } from '@angular/core';
 
 @Component({
   selector: 'app-studio-carousel',
@@ -10,18 +10,20 @@ export class StudioCarouselComponent implements AfterViewInit {
   @ViewChild('scrollbarThumb') scrollbarThumb: ElementRef | undefined;
   @ViewChildren('slide') slides!: QueryList<ElementRef>;
 
-  logos = [
-    { image: 'assets/Treinamento.png' },
-    { image: 'assets/logo-streaming.png' },
-    { image: 'assets/logo-streaming.png' },
-    { image: 'assets/logo-streaming.png' },
-    { image: 'assets/logo-streaming.png' },
-    { image: 'assets/Treinamento.png' },
-    { image: 'assets/logo-streaming.png' },
-    { image: 'assets/logo-streaming.png' },
-    { image: 'assets/logo-streaming.png' },
-    { image: 'assets/logo-streaming.png' }
-  ];
+  // logos = [
+  //   { image: 'assets/Treinamento.png' },
+  //   { image: 'assets/logo-streaming.png' },
+  //   { image: 'assets/logo-streaming.png' },
+  //   { image: 'assets/logo-streaming.png' },
+  //   { image: 'assets/logo-streaming.png' },
+  //   { image: 'assets/Treinamento.png' },
+  //   { image: 'assets/logo-streaming.png' },
+  //   { image: 'assets/logo-streaming.png' },
+  //   { image: 'assets/logo-streaming.png' },
+  //   { image: 'assets/logo-streaming.png' }
+  // ];
+
+  @Input() logo: any; // Recebe um único logo como entrada
 
   showPrevButton = false;
   showNextButton = true;

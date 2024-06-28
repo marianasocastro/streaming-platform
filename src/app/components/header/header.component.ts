@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,23 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  slides = [
-    {
-      image: 'assets/Treinamento.png',
-      title: 'Star Wars: The Force Awaken',
-      description: ' Description for Slide 1 Description for Slide 1 Description for Slide 1 Description for Slide 1 Description for Slide 1'
-    },
-    {
-      image: 'assets/Deteccao_de_raio_x.png',
-      title: 'Slide 2',
-      description: 'Description for Slide 2'
-    },
-    {
-      image: 'assets/Chat_atendimento.png',
-      title: 'Slide 3',
-      description: 'Description for Slide 3'
-    }
-  ];
+
+  @Input() movies: any[] = [];
 
   currentIndex = 0;
 
@@ -37,7 +22,7 @@ export class HeaderComponent implements OnInit {
   }
 
   nextSlide(): void {
-    this.currentIndex = (this.currentIndex < this.slides.length - 1) ? this.currentIndex + 1 : 0;
+    this.currentIndex = (this.currentIndex < this.movies.length - 1) ? this.currentIndex + 1 : 0;
   }
 
   goToSlide(index: number): void {

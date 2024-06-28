@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,9 @@ import { HorizontalCardComponent } from './components/horizontal-card/horizontal
 import { MiniCardComponent } from './components/mini-card/mini-card.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { BannerComponent } from './components/banner/banner.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { MoviesService } from './services/movies.service';
+
 
 @NgModule({
   declarations: [
@@ -24,13 +28,15 @@ import { BannerComponent } from './components/banner/banner.component';
     HorizontalCardComponent,
     MiniCardComponent,
     SliderComponent,
-    BannerComponent
+    BannerComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [MoviesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
