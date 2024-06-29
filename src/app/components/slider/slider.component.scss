@@ -28,10 +28,17 @@
 
 .slider-wrapper{
   .image-list {
-    display: grid;
-    grid-template-columns: repeat(20, 1fr);
+    // display: grid;
+    // grid-template-columns: repeat(20, 1fr);
+    // gap: 1rem;
+    // font-size: 0;
+    // list-style: none;
+    // margin-bottom: 30px;
+    // overflow-x: auto;
+    // scrollbar-width: none;
+    display: flex;
+    justify-content: space-between;
     gap: 1rem;
-    font-size: 0;
     list-style: none;
     margin-bottom: 30px;
     overflow-x: auto;

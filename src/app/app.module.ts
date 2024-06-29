@@ -15,6 +15,8 @@ import { SliderComponent } from './components/slider/slider.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { MoviesService } from './services/movies.service';
+import { CompaniesService } from './services/companies.service';
+import { TrendingService } from './services/trending.service';
 
 
 @NgModule({
@@ -36,7 +38,11 @@ import { MoviesService } from './services/movies.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [MoviesService],
+  providers: [
+    MoviesService,
+    CompaniesService,
+    TrendingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

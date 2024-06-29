@@ -6,17 +6,16 @@ import { tap, switchMap, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-
-export class MoviesService {
+export class TvSeriesService {
 
   private config: any;
-  genresMovies!: any[];
+  genresTV!: any[];
 
   constructor(private http: HttpClient) {
     this.loadConfig();
-    this.getMovieGenreList().subscribe(
+    this.getTVSeriesGenreList().subscribe(
       (data) => {
-        this.genresMovies = data;
+        this.genresTV = data;
       },
       (error) => {
         console.error('Erro ao buscar gêneros de filmes:', error);
@@ -40,16 +39,16 @@ export class MoviesService {
   }
 
 
-  getNowPlayingMovies(): Observable<any[]> {
+  getTopRatedSeries(): Observable<any[]> {
     return from(this.loadConfig()).pipe(
       switchMap(() => {
         let params = new HttpParams().set('api_key', this.config.API_KEY);
-        return this.http.get<any>(`${this.config.API_URL}/movie/now_playing`, { params });
+        return this.http.get<any>(`${this.config.API_URL}/tv/top_rated`, { params });
       }),
       map(data => {
         if (data && data.results && data.results.length > 0) {
           return data.results.map((item: any) => {
-            item.genres = item.genre_ids.map((id: number) => this.getGenreName(id, this.genresMovies));
+            item.genres = item.genre_ids.map((id: number) => this.getGenreName(id, this.genresTV));
             return item;
           });
         } else {
@@ -59,16 +58,16 @@ export class MoviesService {
     );
   }
 
-  getTopRatedMovies(): Observable<any[]> {
+  getPopularSeries(): Observable<any[]> {
     return from(this.loadConfig()).pipe(
       switchMap(() => {
         let params = new HttpParams().set('api_key', this.config.API_KEY);
-        return this.http.get<any>(`${this.config.API_URL}/movie/top_rated`, { params });
+        return this.http.get<any>(`${this.config.API_URL}/tv/popular`, { params });
       }),
       map(data => {
         if (data && data.results && data.results.length > 0) {
           return data.results.map((item: any) => {
-            item.genres = item.genre_ids.map((id: number) => this.getGenreName(id, this.genresMovies));
+            item.genres = item.genre_ids.map((id: number) => this.getGenreName(id, this.genresTV));
             return item;
           });
         } else {
@@ -78,8 +77,8 @@ export class MoviesService {
     );
   }
 
-  getMovieGenreList(): Observable<any>{
-    return this.http.get(`../../assets/genresMovies.json`);
+  getTVSeriesGenreList(): Observable<any>{
+    return this.http.get(`../../assets/genresTV.json`);
   }
 
   // Método para obter o nome do gênero a partir do id
@@ -87,5 +86,4 @@ export class MoviesService {
     const genre = genres.find(g => g.id === id);
     return genre ? genre.name : 'Unknown';
   }
-
 }

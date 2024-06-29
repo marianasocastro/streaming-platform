@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
+import { CompaniesService } from 'src/app/services/companies.service';
 import { MoviesService } from 'src/app/services/movies.service';
+import { TrendingService } from 'src/app/services/trending.service';
+import { TvSeriesService } from 'src/app/services/tv-series.service';
 
 @Component({
   selector: 'app-home-page',
@@ -10,57 +13,91 @@ import { MoviesService } from 'src/app/services/movies.service';
 export class HomePageComponent implements OnInit {
 
   trendingMovies!: any[];
+  upcomingMovies!: any[];
+  popularWeek!: any[];
+  popularDay!: any[];
   genres!: any[];
   companies!: any[];
+  topRatedMovies!: any[];
+  popularSeries!: any[];
+  topRatedSeries!: any[];
 
-  constructor(private moviesService: MoviesService) { }
+  constructor(
+    private moviesService: MoviesService,
+    private companiesService: CompaniesService,
+    private trendingService: TrendingService,
+    private tvSeriesService: TvSeriesService) { }
 
   ngOnInit(): void {
 
-    const companyIds = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-    this.moviesService.getCompaniesListByIds(companyIds).subscribe(
+    this.companiesService.getCompaniesListByIds().subscribe(
       (data) => {
         this.companies = data;
-        console.log(this.companies);
       },
       (error) => {
-        console.error('Erro ao buscar as empresas:', error);
+        console.error('Error finding comapnies:', error);
       }
-    );
+    )
 
-    this.moviesService.getGenreList()
-      .pipe(
-        switchMap((genreData) => {
-          // Popula a lista de gêneros
-          this.genres = genreData.genres;
-          // Faz a requisição dos filmes em tendência
-          return this.moviesService.getTrendingMovies();
-        })
-      )
-      .subscribe(
-        (data) => {
-          // Verifica se a propriedade 'results' existe e contém dados
-          if (data && data.results && data.results.length > 0) {
-            // Atribui os primeiros 5 resultados à variável trendingMovies
-            this.trendingMovies = data.results.slice(0, 5).map((movie: { genres: any; genre_ids: any[]; }) => {
-              movie.genres = movie.genre_ids.map(id => this.getGenreName(id));
-              return movie;
-            });
-            console.log(this.trendingMovies);
-          } else {
-            console.error('Dados inválidos ou ausentes da API');
-          }
-        },
-        (error) => {
-          console.error('Erro ao buscar filmes em tendência:', error);
-        }
-      );
+    this.trendingService.get10TrendingWeek().subscribe(
+      (data) => {
+        this.popularWeek = data
+      },
+      (error) => {
+        console.error('Error finding trending of the week:', error);
+      }
+    )
+
+    this.trendingService.get5TrendingDay().subscribe(
+      (data) => {
+        this.popularDay = data;
+      },
+      (error) => {
+        console.error('Error finding trending of the day:', error);
+      }
+    )
+
+    this.moviesService.getNowPlayingMovies().subscribe(
+      (data) => {
+        this.upcomingMovies = data;
+      },
+      (error) => {
+        console.error('Error finding Playing Now movies:', error);
+      }
+    )
+
+    this.moviesService.getTopRatedMovies().subscribe(
+      (data) => {
+        this.topRatedMovies = data;
+        console.log(data)
+      },
+      (error) => {
+        console.error('Error finding popular movies:', error);
+      }
+    )
+
+    this.tvSeriesService.getPopularSeries().subscribe(
+      (data) => {
+        this.popularSeries = data
+      },
+      (error) => {
+        console.error('Error finding popular series:', error);
+      }
+    )
+
+    this.tvSeriesService.getTopRatedSeries().subscribe(
+      (data) => {
+        this.topRatedSeries = data
+      },
+      (error) => {
+        console.error('Error finding top rated series:', error);
+      }
+    )
+
+
+
+
   }
-    // Método para obter o nome do gênero a partir do id
-  getGenreName(id: number): string {
-    const genre = this.genres.find(g => g.id === id);
-    return genre ? genre.name : 'Unknown';
-  }
+
 
 }

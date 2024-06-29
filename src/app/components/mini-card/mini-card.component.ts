@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-mini-card',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mini-card.component.scss']
 })
 export class MiniCardComponent implements OnInit {
+
+  @Input() popular!: any;
+  @Input() index!: number;
 
   constructor() { }
 

@@ -1,14 +1,17 @@
 <a href="" class="card-link">
   <div class="card">
-    <h4 class="text-h3">1</h4>
+    <h4 class="text-h3">{{index}}</h4>
     <div class="card-image">
-      <img src="../../../assets/514020201013-uau-posters-filmes-joker-coringa-joaquin-phoenix-2.jpg" alt="Card Background">
+      <img [src]="'https://image.tmdb.org/t/p/original/' + popular.poster_path" [alt]="'logo of ' + popular.name">
     </div>
     <div class="card-text">
-      <span class="text-tags">Movie</span>
-      <h4 class="paragraph">Card Title</h4>
-      <span class="text-details"><i class="fa-solid fa-film"></i> Action • Movie</span>
-      <span class="paragraph"><i class="fa-solid fa-star"></i> 4.8</span>
+      <span class="text-tags">{{popular.media_type}}</span>
+      <h4 *ngIf="popular.media_type === 'movie'; else tvName" class="paragraph">{{popular.title}}</h4>
+      <ng-template #tvName>
+        <h4 class="paragraph">{{popular.name}}</h4>
+      </ng-template>
+      <span class="text-details"><i class="fa-solid fa-film"></i>{{popular.genres[0]}} • {{popular.genres[1]}} </span>
+      <span class="paragraph"><i class="fa-solid fa-star"></i>{{popular.vote_average | number:'1.1-1' }}</span>
     </div>
   </div>
 </a>
