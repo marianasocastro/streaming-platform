@@ -2,7 +2,7 @@
   <div class="overlay"></div>
 
   <div class="carousel-inner" [ngStyle]="{'background-image': 'url(' + 'https://image.tmdb.org/t/p/w1280' + media[currentIndex].backdrop_path + ')'}">
-    <h6 class="paragraph container">The best movies of all time</h6>
+    <h6 class="paragraph container">Explore by the genre</h6>
     <div class="carousel-content container">
       <div class="carousel-caption">
         <!-- <span class="text-tags">{{media[currentIndex].media_type || "movie"}}</span> -->
@@ -16,7 +16,7 @@
           <span class="text-details">{{media[currentIndex].release_date | date:'yyyy'}} • {{media[currentIndex].genres[0]}} • {{media[currentIndex].genres[1]}} </span>
         </ng-template>
 
-        <p class="paragraph">{{media[currentIndex].overview}}</p>
+        <!-- <p class="paragraph">{{media[currentIndex].overview}}</p> -->
         <div class="btns">
           <button class="btn-primary"><a href=""><i class="fa-solid fa-circle-play"></i> Watch Trailer</a></button>
           <button class="btn-secondary"><a href=""><i class="fa-regular fa-bookmark"></i> Add Watchlist</a></button>
@@ -39,6 +39,7 @@
     </app-slider>
   </div>
 </div>
+
 
 
 

@@ -13,10 +13,7 @@
   <app-mini-card *ngFor="let media of popularWeek; let i = index" [popular]="media" [index]="i+1"></app-mini-card>
 </app-slider>
 
-<h3 class="text-h3 container">Top Rated Movies</h3>
-<app-slider>
-  <app-horizontal-card *ngFor="let movie of topRatedMovies" [media]="movie"></app-horizontal-card>
-</app-slider>
+<app-banner [media]="topRatedMovies"></app-banner>
 
 <h3 class="text-h3 container">Popular Series</h3>
 <app-slider>
@@ -27,6 +24,9 @@
 <app-slider>
   <app-horizontal-card *ngFor="let serie of topRatedSeries" [media]="serie"></app-horizontal-card>
 </app-slider>
+
+<app-genrer-banner></app-genrer-banner>
+
 <app-footer></app-footer>
 
 

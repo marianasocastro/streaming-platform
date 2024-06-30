@@ -54,6 +54,15 @@
   .text-h2, .text-details, .paragraph{
     width: 40%;
   }
+  .paragraph{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4; /* Número de linhas a serem exibidas */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 96px;
+    // max-width: 100%; /* Ou defina um valor específico, se necessário */
+  }
   .btns{
     display: flex;
     flex-direction: row;

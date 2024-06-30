@@ -1,11 +1,11 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, ViewChildren, QueryList, HostListener } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, ViewChildren, QueryList, HostListener, AfterViewChecked } from '@angular/core';
 
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss']
 })
-export class SliderComponent implements AfterViewInit {
+export class SliderComponent implements AfterViewInit, AfterViewChecked {
   @ViewChild('imageList') imageList: ElementRef | undefined;
   @ViewChild('scrollbarThumb') scrollbarThumb: ElementRef | undefined;
   @ViewChildren('slide') slides!: QueryList<ElementRef>;
@@ -16,6 +16,10 @@ export class SliderComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.initSlider();
+    this.updateButtonsVisibility();
+  }
+
+  ngAfterViewChecked() {
     this.updateButtonsVisibility();
   }
 
@@ -68,9 +72,18 @@ export class SliderComponent implements AfterViewInit {
     }
   }
 
+  // updateButtonsVisibility() {
+  //   if (this.imageList) {
+  //     const imageListElement = this.imageList.nativeElement;
+  //     this.showPrevButton = imageListElement.scrollLeft > 0;
+  //     this.showNextButton = imageListElement.scrollLeft < this.maxScrollLeft;
+  //   }
+  // }
+
   updateButtonsVisibility() {
     if (this.imageList) {
       const imageListElement = this.imageList.nativeElement;
+      this.maxScrollLeft = imageListElement.scrollWidth - imageListElement.clientWidth;
       this.showPrevButton = imageListElement.scrollLeft > 0;
       this.showNextButton = imageListElement.scrollLeft < this.maxScrollLeft;
     }

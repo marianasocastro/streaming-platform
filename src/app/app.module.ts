@@ -17,6 +17,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { MoviesService } from './services/movies.service';
 import { CompaniesService } from './services/companies.service';
 import { TrendingService } from './services/trending.service';
+import { GenrerBannerComponent } from './components/genrer-banner/genrer-banner.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { TrendingService } from './services/trending.service';
     MiniCardComponent,
     SliderComponent,
     BannerComponent,
-    HomePageComponent
+    HomePageComponent,
+    GenrerBannerComponent
   ],
   imports: [
     BrowserModule,
