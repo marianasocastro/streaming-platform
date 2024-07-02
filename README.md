@@ -1,7 +1,7 @@
 # StreamingPlatform
 
 <h1 align="center">
-    <img alt="Capa Projeto" title="#CapaProjeto" src="../streaming-platform/src/assets/capa_readme.png" />
+    <img alt="Capa Projeto" title="#CapaProjeto" src="/assets/capa_readme.png" />
 </h1>
 
 <h4 align="center"> 
