@@ -1,7 +1,7 @@
 # StreamingPlatform
 
 <h1 align="center">
-    <img alt="Capa Projeto" title="#CapaProjeto" src="/assets/capa_readme.png" />
+    <img alt="Capa Projeto" title="#CapaProjeto" src="./assets/capa_readme.png" />
 </h1>
 
 <h4 align="center"> 
@@ -29,7 +29,7 @@
 
 Este projeto é uma plataforma de streaming desenvolvida com Angular 14 e Node.js 18, projetada para oferecer uma experiência responsiva em dispositivos móveis e iPads. O foco principal foi na prática de TypeScript para um código mais seguro e escalável, utilizando SCSS para estilos e aplicando boas práticas de desenvolvimento.
 
-<!-- Acesse via Browser: [Desenvolvimento de Software](https://cubos.academy/cursos/desenvolvimento-de-software-v2) -->
+Acesse via Browser: [Streaming Platform](https://streaming-platform-two.vercel.app/)
 
 <!-- ---
 
@@ -69,9 +69,9 @@ O layout(NÃO AUTORAL) da aplicação está disponível no Figma:
 ### Web
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="Home Page - imagem 01" title="Nome do Projeto" src="../streaming-platform/src/assets/capa_readme.png" width="400px">
-  <img alt="Home Page - imagem 02" title="Nome do Projeto" src="../streaming-platform/src/assets/homepage-img2.png" width="400px">
-  <img alt="Home Page - imagem 03" title="Nome do Projeto" src="../streaming-platform/src/assets/homepage-img3.png" width="400px">
+  <img alt="Home Page - imagem 01" title="Nome do Projeto" src="./assets/capa_readme.png" width="400px">
+  <img alt="Home Page - imagem 02" title="Nome do Projeto" src="./assets/homepage-img2.png" width="400px">
+  <img alt="Home Page - imagem 03" title="Nome do Projeto" src="./assets/homepage-img3.png" width="400px">
 </p>
 
 ---
