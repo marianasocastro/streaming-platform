@@ -5,16 +5,8 @@
     <div class="carousel-content container">
       <div class="carousel-caption">
         <span class="text-tags">{{trending[currentIndex].media_type}}</span>
-        <h2 *ngIf="trending[currentIndex].media_type === 'movie'; else tvName" class="text-h2">{{ trending[currentIndex].title }}</h2>
-        <ng-template #tvName>
-          <h2 class="text-h2">{{ trending[currentIndex].name }}</h2>
-        </ng-template>
-
-        <span *ngIf="trending[currentIndex].media_type === 'movie'; else tvDetails" class="text-details">{{trending[currentIndex].release_date | date:'yyyy'}} • {{trending[currentIndex].genres[0]}} • {{trending[currentIndex].genres[1]}} </span>
-        <ng-template #tvDetails>
-          <span class="text-details">{{trending[currentIndex].first_air_date | date:'yyyy'}} • {{trending[currentIndex].genres[0]}} • {{trending[currentIndex].genres[1]}} </span>
-        </ng-template>
-
+        <h2 class="text-h2">{{ trending[currentIndex].title }}</h2>
+        <span class="text-details">{{trending[currentIndex].release_date | date:'yyyy'}} • {{trending[currentIndex].genres[0]}} • {{trending[currentIndex].genres[1]}} </span>
         <p class="paragraph">{{trending[currentIndex].overview}}</p>
         <div class="btns">
           <button class="btn-primary"><a href=""><i class="fa-solid fa-circle-play"></i> Watch Trailer</a></button>

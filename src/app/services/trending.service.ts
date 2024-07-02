@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, from, forkJoin } from 'rxjs';
 import { tap, switchMap, map } from 'rxjs/operators';
+import { Serie } from '../models/serie.model';
+import { Movie } from '../models/movie.model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +43,7 @@ export class TrendingService {
   }
 
 
-  getTrendingDay(): Observable<any[]> {
+  getTrendingDay(): Observable<(Movie | Serie)[]> {
     return from(this.loadConfig()).pipe(
       switchMap(() => {
         let params = new HttpParams().set('api_key', this.config.API_KEY);
@@ -51,11 +53,33 @@ export class TrendingService {
         if (data && data.results && data.results.length > 0) {
           return data.results.map((item: any) => {
             if (item.media_type === 'movie') {
-              item.genres = item.genre_ids.map((id: number) => this.getGenreName(id, this.genresMovies));
+              return {
+                id: item.id,
+                media_type: 'Movie',
+                title: item.title,
+                genre_ids: item.genre_ids,
+                genres: item.genre_ids.map((id: number) => this.getGenreName(id, this.genresMovies)),
+                backdrop_path: item.backdrop_path,
+                poster_path: item.poster_path,
+                overview: item.overview,
+                release_date: item.release_date,
+                vote_average: item.vote_average
+              } as Movie;
             } else if (item.media_type === 'tv') {
-              item.genres = item.genre_ids.map((id: number) => this.getGenreName(id, this.genresTV));
+              return {
+                id: item.id,
+                media_type: 'TV',
+                title: item.name,
+                genre_ids: item.genre_ids,
+                genres: item.genre_ids.map((id: number) => this.getGenreName(id, this.genresTV)),
+                backdrop_path: item.backdrop_path,
+                poster_path: item.poster_path,
+                overview: item.overview,
+                release_date: item.first_air_date,
+                vote_average: item.vote_average
+              } as Serie;
             }
-            return item;
+            return {} as (Movie | Serie); // Retorna um objeto vazio caso não haja correspondência
           });
         } else {
           throw new Error('Dados inválidos ou ausentes da API');
@@ -64,8 +88,7 @@ export class TrendingService {
     );
   }
 
-
-  getTrendingWeek(): Observable<any[]> {
+  getTrendingWeek(): Observable<(Movie | Serie)[]> {
     return from(this.loadConfig()).pipe(
       switchMap(() => {
         let params = new HttpParams().set('api_key', this.config.API_KEY);
@@ -75,11 +98,33 @@ export class TrendingService {
         if (data && data.results && data.results.length > 0) {
           return data.results.map((item: any) => {
             if (item.media_type === 'movie') {
-              item.genres = item.genre_ids.map((id: number) => this.getGenreName(id, this.genresMovies));
+              return {
+                id: item.id,
+                media_type: 'Movie',
+                title: item.title,
+                genre_ids: item.genre_ids,
+                genres: item.genre_ids.map((id: number) => this.getGenreName(id, this.genresMovies)),
+                backdrop_path: item.backdrop_path,
+                poster_path: item.poster_path,
+                overview: item.overview,
+                release_date: item.release_date,
+                vote_average: item.vote_average
+              } as Movie;
             } else if (item.media_type === 'tv') {
-              item.genres = item.genre_ids.map((id: number) => this.getGenreName(id, this.genresTV));
+              return {
+                id: item.id,
+                media_type: 'TV',
+                title: item.name,
+                genre_ids: item.genre_ids,
+                genres: item.genre_ids.map((id: number) => this.getGenreName(id, this.genresTV)),
+                backdrop_path: item.backdrop_path,
+                poster_path: item.poster_path,
+                overview: item.overview,
+                release_date: item.first_air_date,
+                vote_average: item.vote_average
+              } as Serie;
             }
-            return item;
+            return {} as (Movie | Serie); // Retorna um objeto vazio caso não haja correspondência
           });
         } else {
           throw new Error('Dados inválidos ou ausentes da API');

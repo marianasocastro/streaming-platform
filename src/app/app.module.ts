@@ -18,6 +18,7 @@ import { MoviesService } from './services/movies.service';
 import { CompaniesService } from './services/companies.service';
 import { TrendingService } from './services/trending.service';
 import { GenrerBannerComponent } from './components/genrer-banner/genrer-banner.component';
+import { TvSeriesService } from './services/tv-series.service';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { GenrerBannerComponent } from './components/genrer-banner/genrer-banner.
   providers: [
     MoviesService,
     CompaniesService,
-    TrendingService
+    TrendingService,
+    TvSeriesService
   ],
   bootstrap: [AppComponent]
 })

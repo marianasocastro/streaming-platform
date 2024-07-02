@@ -1,31 +1,42 @@
 <app-header [trending]="popularDay"></app-header>
-<app-slider>
-  <app-studio-carousel *ngFor="let company of companies" [company]="company"></app-studio-carousel>
-</app-slider>
 
-<h3 class="text-h3 container">Just Release</h3>
-<app-slider>
-  <app-vertical-card *ngFor="let movie of upcomingMovies" [movie]="movie"></app-vertical-card>
-</app-slider>
+<div class="section">
+  <app-slider>
+    <app-studio-carousel *ngFor="let company of companies" [company]="company"></app-studio-carousel>
+  </app-slider>
+</div>
 
-<h3 class="text-h3 container">Popular of the Week</h3>
-<app-slider>
-  <app-mini-card *ngFor="let media of popularWeek; let i = index" [popular]="media" [index]="i+1"></app-mini-card>
-</app-slider>
+<div class="section">
+  <h3 class="text-h3 container">Just Release</h3>
+  <app-slider>
+    <app-vertical-card *ngFor="let movie of upcomingMovies" [movie]="movie"></app-vertical-card>
+  </app-slider>
+</div>
 
-<app-banner [media]="topRatedMovies"></app-banner>
+<div class="section">
+  <h3 class="text-h3 container">Popular of the Week</h3>
+  <app-slider>
+    <app-mini-card *ngFor="let media of popularWeek; let i = index" [popular]="media" [index]="i+1"></app-mini-card>
+  </app-slider>
+</div>
 
-<h3 class="text-h3 container">Popular Series</h3>
-<app-slider>
-  <app-horizontal-card *ngFor="let serie of popularSeries" [media]="serie"></app-horizontal-card>
-</app-slider>
+<div class="section">
+  <app-banner [media]="topRatedMovies"></app-banner>
+</div>
 
-<h3 class="text-h3 container">Top Rated Series</h3>
-<app-slider>
-  <app-horizontal-card *ngFor="let serie of topRatedSeries" [media]="serie"></app-horizontal-card>
-</app-slider>
+<div class="section">
+  <h3 class="text-h3 container">Popular Series</h3>
+  <app-slider>
+    <app-horizontal-card *ngFor="let serie of popularSeries" [media]="serie"></app-horizontal-card>
+  </app-slider>
+</div>
 
-<app-genrer-banner></app-genrer-banner>
+<div class="section">
+  <h3 class="text-h3 container">Top Rated Series</h3>
+  <app-slider>
+    <app-horizontal-card *ngFor="let serie of topRatedSeries" [media]="serie"></app-horizontal-card>
+  </app-slider>
+</div>
 
 <app-footer></app-footer>
 

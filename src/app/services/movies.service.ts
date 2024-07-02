@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, from, forkJoin } from 'rxjs';
-import { tap, switchMap, map } from 'rxjs/operators';
+import { tap, switchMap, map, catchError } from 'rxjs/operators';
+import { Movie } from '../models/movie.model'
 
 @Injectable({
   providedIn: 'root'
@@ -24,23 +25,49 @@ export class MoviesService {
     )
   }
 
+
+
   private loadConfig(): Promise<any> {
-    return this.http.get('/assets/config.json').pipe(
-      tap(config => this.config = config)
-    ).toPromise();
+    return this.http.get('/assets/config.json')
+      .toPromise()
+      .then((config: any) => {
+        this.config = config;
+        return config; // Retornando o config para garantir que a promessa seja resolvida corretamente
+      })
+      .catch((error: any) => {
+        console.error('Erro ao carregar configuração:', error);
+        throw error; // Lançando o erro para tratamento posterior, se necessário
+      });
   }
 
-  getTrendingMovies(): Observable<any> {
+
+  getTrendingMovies(): Observable<Movie[]> {
     return from(this.loadConfig()).pipe(
       switchMap(() => {
         let params = new HttpParams().set('api_key', this.config.API_KEY);
-        return this.http.get(`${this.config.API_URL}/trending/movie/day`, { params });
+        return this.http.get<any>(`${this.config.API_URL}/trending/movie/day`, { params });
+      }),
+      map(data => {
+        return data.results.map((item: any) => {
+          return {
+            id: item.id,
+            media_type: 'Movie',
+            title: item.title,
+            genre_ids: item.genre_ids,
+            genres: item.genres || [], // Certifique-se de que os gêneros estejam presentes
+            backdrop_path: item.backdrop_path,
+            poster_path: item.poster_path,
+            overview: item.overview,
+            release_date: item.release_date,
+            vote_average: item.vote_average
+          } as Movie;
+        });
       })
     );
   }
 
 
-  getNowPlayingMovies(): Observable<any[]> {
+  getNowPlayingMovies(): Observable<Movie[]> {
     return from(this.loadConfig()).pipe(
       switchMap(() => {
         let params = new HttpParams().set('api_key', this.config.API_KEY);
@@ -49,8 +76,18 @@ export class MoviesService {
       map(data => {
         if (data && data.results && data.results.length > 0) {
           return data.results.map((item: any) => {
-            item.genres = item.genre_ids.map((id: number) => this.getGenreName(id, this.genresMovies));
-            return item;
+            return {
+              id: item.id,
+              media_type: 'Movie',
+              title: item.title,
+              genre_ids: item.genre_ids,
+              genres: item.genre_ids.map((id: number) => this.getGenreName(id, this.genresMovies)),
+              backdrop_path: item.backdrop_path,
+              poster_path: item.poster_path,
+              overview: item.overview,
+              release_date: item.release_date,
+              vote_average: item.vote_average
+            } as Movie;
           });
         } else {
           throw new Error('Dados inválidos ou ausentes da API');
@@ -59,7 +96,7 @@ export class MoviesService {
     );
   }
 
-  getTopRatedMovies(): Observable<any[]> {
+  getTopRatedMovies(): Observable<Movie[]> {
     return from(this.loadConfig()).pipe(
       switchMap(() => {
         let params = new HttpParams().set('api_key', this.config.API_KEY);
@@ -68,8 +105,49 @@ export class MoviesService {
       map(data => {
         if (data && data.results && data.results.length > 0) {
           return data.results.map((item: any) => {
-            item.genres = item.genre_ids.map((id: number) => this.getGenreName(id, this.genresMovies));
-            return item;
+            return {
+              id: item.id,
+              media_type: 'Movie',
+              title: item.title,
+              genre_ids: item.genre_ids,
+              genres: item.genre_ids.map((id: number) => this.getGenreName(id, this.genresMovies)),
+              backdrop_path: item.backdrop_path,
+              poster_path: item.poster_path,
+              overview: item.overview,
+              release_date: item.release_date,
+              vote_average: item.vote_average
+            } as Movie;
+          });
+        } else {
+          throw new Error('Dados inválidos ou ausentes da API');
+        }
+      })
+    );
+  }
+
+  getMoviesByGenre(genreID: number): Observable<Movie[]> {
+    return from(this.loadConfig()).pipe(
+      switchMap(() => {
+        let params = new HttpParams()
+          .set('api_key', this.config.API_KEY)
+          .set('with_genres', genreID.toString());
+        return this.http.get<any>(`${this.config.API_URL}/discover/movie`, { params });
+      }),
+      map(data => {
+        if (data && data.results && data.results.length > 0) {
+          return data.results.map((item: any) => {
+            return {
+              id: item.id,
+              media_type: 'Movie',
+              title: item.title,
+              genre_ids: item.genre_ids,
+              genres: item.genre_ids.map((id: number) => this.getGenreName(id, this.genresMovies)),
+              backdrop_path: item.backdrop_path,
+              poster_path: item.poster_path,
+              overview: item.overview,
+              release_date: item.release_date,
+              vote_average: item.vote_average
+            } as Movie;
           });
         } else {
           throw new Error('Dados inválidos ou ausentes da API');

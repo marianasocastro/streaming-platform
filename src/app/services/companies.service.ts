@@ -17,9 +17,16 @@ export class CompaniesService {
   }
 
   private loadConfig(): Promise<any> {
-    return this.http.get('/assets/config.json').pipe(
-      tap(config => this.config = config)
-    ).toPromise();
+    return this.http.get('/assets/config.json')
+      .toPromise()
+      .then((config: any) => {
+        this.config = config;
+        return config; // Retornando o config para garantir que a promessa seja resolvida corretamente
+      })
+      .catch((error: any) => {
+        console.error('Erro ao carregar configuração:', error);
+        throw error; // Lançando o erro para tratamento posterior, se necessário
+      });
   }
 
   getCompanyListById(company_id: number): Observable<any>{

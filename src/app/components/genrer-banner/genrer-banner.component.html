@@ -22,20 +22,22 @@
           <button class="btn-secondary"><a href=""><i class="fa-regular fa-bookmark"></i> Add Watchlist</a></button>
         </div>
       </div>
-      <!-- <div class="carousel-indicators">
+      <div class="carousel-indicators">
         <span *ngFor="let movie of media; let i = index"
               (click)="goToSlide(i)"
               [ngClass]="{'active': i === currentIndex}"
               class="indicator">
         </span>
-      </div> -->
+      </div>
     </div>
 
     <app-slider>
-      <img  *ngFor="let movie of media; let i = index"
+      <div *ngFor="let genre of moviesGenres; let i = index"
       (click)="goToSlide(i)"
       [ngClass]="{'active': i === currentIndex}"
-      class="indicator" [src]="'https://image.tmdb.org/t/p/w200' + media[i].backdrop_path" [alt]="'logo of ' + media.title">
+      class="indicator">
+        <!-- <img [src]="'https://image.tmdb.org/t/p/w200' + media[i].backdrop_path" [alt]="'logo of '"> -->
+      </div>
     </app-slider>
   </div>
 </div>

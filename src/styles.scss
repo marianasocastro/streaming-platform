@@ -8,7 +8,7 @@ $color-800-black: #0D0C0F;
 $color-900-black: #08080A;
 $breakpoint-xs: 320px; // Pequenos dispositivos móveis
 $breakpoint-sm: 500px; // Dispositivos móveis médios
-$breakpoint-md: 830px; // Tablets ou telefones maiores em modo paisagem
+$breakpoint-md: 845px; // Tablets ou telefones maiores em modo paisagem
 $breakpoint-lg: 1024px; // Tablets em modo paisagem e pequenos desktops
 $breakpoint-xl: 1200px; // Desktops grandes
 $border-radius: 10px;
@@ -202,6 +202,13 @@ body{
 .component {
   width: 100%;
   padding: 10px;
+}
+
+.section{
+  margin-top: 50px;
+  h3{
+    margin-bottom: 20px;
+  }
 }
 
 /* Tablet Styles */

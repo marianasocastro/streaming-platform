@@ -1,6 +1,7 @@
 import { TvSeriesService } from './../../services/tv-series.service';
 import { MoviesService } from './../../services/movies.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-genrer-banner',
@@ -8,27 +9,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./genrer-banner.component.scss']
 })
 export class GenrerBannerComponent implements OnInit {
-  moviesWithSelectedGenre!: any;
-  seriesWithSelectedGenre!: any;
-  selectedGenre!: any;
-  moviesGenres!: any;
-  tvSeriesGenres!: any;
+  // moviesWithSelectedGenre!: any;
+  // seriesWithSelectedGenre!: any;
+  // selectedGenre!: any;
+  @Input() moviesGenres!: any;
+  // tvSeriesGenres!: any;
   currentIndex = 0;
+  @Input() media!: any[];
 
   constructor(private moviesService: MoviesService, private tvSeriesService:TvSeriesService ) { }
 
   ngOnInit(): void {
     this.startAutoSlide();
-
-    this.moviesService.getMovieGenreList().subscribe(
-      (data) => {
-        this.moviesGenres = data;
-        console.log(data)
-      },
-      (error) => {
-        console.error('Error finding popular movies:', error);
-      }
-    )
   }
 
   startAutoSlide(): void {

@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, from, forkJoin } from 'rxjs';
 import { tap, switchMap, map } from 'rxjs/operators';
+import { Serie } from '../models/serie.model'
 
 @Injectable({
   providedIn: 'root'
@@ -23,23 +24,27 @@ export class TvSeriesService {
     )
   }
 
+  // private loadConfig(): Promise<any> {
+  //   return this.http.get('/assets/config.json').pipe(
+  //     tap(config => this.config = config)
+  //   ).toPromise();
+  // }
+
   private loadConfig(): Promise<any> {
-    return this.http.get('/assets/config.json').pipe(
-      tap(config => this.config = config)
-    ).toPromise();
-  }
-
-  getTrendingMovies(): Observable<any> {
-    return from(this.loadConfig()).pipe(
-      switchMap(() => {
-        let params = new HttpParams().set('api_key', this.config.API_KEY);
-        return this.http.get(`${this.config.API_URL}/trending/movie/day`, { params });
+    return this.http.get('/assets/config.json')
+      .toPromise()
+      .then((config: any) => {
+        this.config = config;
+        return config; // Retornando o config para garantir que a promessa seja resolvida corretamente
       })
-    );
+      .catch((error: any) => {
+        console.error('Erro ao carregar configuração:', error);
+        throw error; // Lançando o erro para tratamento posterior, se necessário
+      });
   }
 
 
-  getTopRatedSeries(): Observable<any[]> {
+  getTopRatedSeries(): Observable<Serie[]> {
     return from(this.loadConfig()).pipe(
       switchMap(() => {
         let params = new HttpParams().set('api_key', this.config.API_KEY);
@@ -48,8 +53,18 @@ export class TvSeriesService {
       map(data => {
         if (data && data.results && data.results.length > 0) {
           return data.results.map((item: any) => {
-            item.genres = item.genre_ids.map((id: number) => this.getGenreName(id, this.genresTV));
-            return item;
+            return {
+              id: item.id,
+              media_type: 'TV',
+              title: item.name,
+              genre_ids: item.genre_ids,
+              genres: item.genre_ids.map((id: number) => this.getGenreName(id, this.genresTV)),
+              backdrop_path: item.backdrop_path,
+              poster_path: item.poster_path,
+              overview: item.overview,
+              release_date: item.first_air_date,
+              vote_average: item.vote_average
+            } as Serie;
           });
         } else {
           throw new Error('Dados inválidos ou ausentes da API');
@@ -58,7 +73,7 @@ export class TvSeriesService {
     );
   }
 
-  getPopularSeries(): Observable<any[]> {
+  getPopularSeries(): Observable<Serie[]> {
     return from(this.loadConfig()).pipe(
       switchMap(() => {
         let params = new HttpParams().set('api_key', this.config.API_KEY);
@@ -67,8 +82,18 @@ export class TvSeriesService {
       map(data => {
         if (data && data.results && data.results.length > 0) {
           return data.results.map((item: any) => {
-            item.genres = item.genre_ids.map((id: number) => this.getGenreName(id, this.genresTV));
-            return item;
+            return {
+              id: item.id,
+              media_type: 'TV',
+              title: item.name,
+              genre_ids: item.genre_ids,
+              genres: item.genre_ids.map((id: number) => this.getGenreName(id, this.genresTV)),
+              backdrop_path: item.backdrop_path,
+              poster_path: item.poster_path,
+              overview: item.overview,
+              release_date: item.first_air_date,
+              vote_average: item.vote_average
+            } as Serie;
           });
         } else {
           throw new Error('Dados inválidos ou ausentes da API');

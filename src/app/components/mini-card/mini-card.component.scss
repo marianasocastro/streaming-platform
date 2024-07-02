@@ -9,6 +9,7 @@
   column-gap: 15px;
   // width: fit-content;
   width: max-content;
+  margin-right: 16px;
   .card-image img {
     width: 86px;
     height: auto;
@@ -29,4 +30,8 @@
   .fa-star{
     color: $color-yellow;
   }
+}
+
+i{
+  margin-right: 5px;
 }

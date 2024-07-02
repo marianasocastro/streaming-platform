@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
+import { Movie } from 'src/app/models/movie.model';
+import { Serie } from 'src/app/models/serie.model';
 import { CompaniesService } from 'src/app/services/companies.service';
 import { MoviesService } from 'src/app/services/movies.service';
 import { TrendingService } from 'src/app/services/trending.service';
@@ -12,15 +14,14 @@ import { TvSeriesService } from 'src/app/services/tv-series.service';
 })
 export class HomePageComponent implements OnInit {
 
-  trendingMovies!: any[];
-  upcomingMovies!: any[];
-  popularWeek!: any[];
-  popularDay!: any[];
-  genres!: any[];
+  trendingMovies!: Movie[];
+  upcomingMovies!: Movie[];
+  popularWeek!: (Movie | Serie)[];
+  popularDay!: (Movie | Serie)[];
   companies!: any[];
-  topRatedMovies!: any[];
-  popularSeries!: any[];
-  topRatedSeries!: any[];
+  topRatedMovies!: Movie[];
+  popularSeries!: Serie[];
+  topRatedSeries!: Serie[];
 
   constructor(
     private moviesService: MoviesService,
@@ -40,8 +41,8 @@ export class HomePageComponent implements OnInit {
     )
 
     this.trendingService.get10TrendingWeek().subscribe(
-      (data) => {
-        this.popularWeek = data
+      (medias: (Movie | Serie)[]) => {
+        this.popularWeek = medias
       },
       (error) => {
         console.error('Error finding trending of the week:', error);
@@ -49,8 +50,8 @@ export class HomePageComponent implements OnInit {
     )
 
     this.trendingService.get5TrendingDay().subscribe(
-      (data) => {
-        this.popularDay = data;
+      (medias: (Movie | Serie)[]) => {
+        this.popularDay = medias;
       },
       (error) => {
         console.error('Error finding trending of the day:', error);
@@ -58,8 +59,8 @@ export class HomePageComponent implements OnInit {
     )
 
     this.moviesService.getNowPlayingMovies().subscribe(
-      (data) => {
-        this.upcomingMovies = data;
+      (movies: Movie[]) => {
+        this.upcomingMovies = movies;
       },
       (error) => {
         console.error('Error finding Playing Now movies:', error);
@@ -67,9 +68,9 @@ export class HomePageComponent implements OnInit {
     )
 
     this.moviesService.getTopRatedMovies().subscribe(
-      (data) => {
-        this.topRatedMovies = data;
-        console.log(data)
+      (movies: Movie[]) => {
+        this.topRatedMovies = movies;
+        console.log(movies)
       },
       (error) => {
         console.error('Error finding popular movies:', error);
@@ -77,8 +78,8 @@ export class HomePageComponent implements OnInit {
     )
 
     this.tvSeriesService.getPopularSeries().subscribe(
-      (data) => {
-        this.popularSeries = data
+      (series: Serie[]) => {
+        this.popularSeries = series
       },
       (error) => {
         console.error('Error finding popular series:', error);
@@ -86,18 +87,14 @@ export class HomePageComponent implements OnInit {
     )
 
     this.tvSeriesService.getTopRatedSeries().subscribe(
-      (data) => {
-        this.topRatedSeries = data
+      (series: Serie[]) => {
+        this.topRatedSeries = series
       },
       (error) => {
         console.error('Error finding top rated series:', error);
       }
     )
 
-
-
-
   }
-
 
 }
