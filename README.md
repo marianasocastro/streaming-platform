@@ -1,7 +1,7 @@
 # StreamingPlatform
 
 <h1 align="center">
-    <img alt="Capa Projeto" title="#CapaProjeto" src="./assets/capa_readme.png" />
+    <img alt="Capa Projeto" title="#CapaProjeto" src="./src/assets/capa_readme.png" />
 </h1>
 
 <h4 align="center"> 
@@ -69,9 +69,9 @@ O layout(NÃO AUTORAL) da aplicação está disponível no Figma:
 ### Web
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="Home Page - imagem 01" title="Nome do Projeto" src="./assets/capa_readme.png" width="400px">
-  <img alt="Home Page - imagem 02" title="Nome do Projeto" src="./assets/homepage-img2.png" width="400px">
-  <img alt="Home Page - imagem 03" title="Nome do Projeto" src="./assets/homepage-img3.png" width="400px">
+  <img alt="Home Page - imagem 01" title="Nome do Projeto" src="./src/assets/capa_readme.png" width="400px">
+  <img alt="Home Page - imagem 02" title="Nome do Projeto" src="./src/assets/homepage-img2.png" width="400px">
+  <img alt="Home Page - imagem 03" title="Nome do Projeto" src="./src/assets/homepage-img3.png" width="400px">
 </p>
 
 ---
